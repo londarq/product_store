@@ -19,14 +19,7 @@ namespace DAL.Repository.GenericRepository
 
         public IQueryable<TEntity> GetAll()
         {
-            try
-            {
-                return DbContext.Set<TEntity>();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
-            }
+            return DbContext.Set<TEntity>();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllEntitiesAsync()
@@ -36,60 +29,24 @@ namespace DAL.Repository.GenericRepository
 
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"{nameof(CreateAsync)}, entity must not be null");
-            }
+            await DbContext.AddAsync(entity);
+            await DbContext.SaveChangesAsync();
 
-            try
-            {
-                await DbContext.AddAsync(entity);
-                await DbContext.SaveChangesAsync();
-
-                return entity;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
-            }
+            return entity;
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"{nameof(UpdateAsync)}, entity must not be null");
-            }
+            DbContext.Update(entity);
+            await DbContext.SaveChangesAsync();
 
-            try
-            {
-                DbContext.Update(entity);
-                await DbContext.SaveChangesAsync();
-
-                return entity;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
-            }
+            return entity;
         }
 
         public async Task DeleteAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"{nameof(DeleteAsync)}, entity must not be null");
-            }
-
-            try
-            {
-                DbContext.Remove(entity);
-                await DbContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{nameof(entity)} could not be deleted: {ex.Message}");
-            }
+            DbContext.Remove(entity);
+            await DbContext.SaveChangesAsync();
         }
     }
 }
