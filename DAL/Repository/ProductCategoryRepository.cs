@@ -1,6 +1,6 @@
 ﻿using DAL.Entities;
 using DAL.Repository.GenericRepository;
-using DAL.Repository.Interfaces;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
