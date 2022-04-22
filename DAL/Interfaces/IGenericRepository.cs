@@ -6,11 +6,10 @@ namespace DAL.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IQueryable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(int id);
         Task<TEntity> CreateAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task DeleteAsync(TEntity entity);
-
-        Task<IEnumerable<TEntity>> GetAllEntitiesAsync();
+        Task<bool> DeleteAsync(int id);
     }
 }

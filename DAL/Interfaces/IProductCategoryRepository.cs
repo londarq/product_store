@@ -5,6 +5,6 @@ namespace DAL.Interfaces
 {
     public interface IProductCategoryRepository : IGenericRepository<ProductCategory>
     {
-        public Task<ProductCategory> GetProductCategoryByIdAsync(int id);
+
     }
 }

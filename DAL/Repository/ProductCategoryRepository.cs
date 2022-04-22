@@ -9,10 +9,5 @@ namespace DAL.Repository
     public class ProductCategoryRepository : GenericRepository<ProductCategory>, IProductCategoryRepository
     {
         public ProductCategoryRepository(ApplicationContext.ApplicationContext dbContext) : base(dbContext) {}
-
-        public Task<ProductCategory> GetProductCategoryByIdAsync(int id)
-        {
-            return GetAll().FirstOrDefaultAsync(x => x.Id == id);
-        }
     }
 }

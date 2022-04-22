@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,46 +7,49 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository.GenericRepository
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         
-        protected readonly ApplicationContext.ApplicationContext DbContext;
+        protected readonly ApplicationContext.ApplicationContext db;
         
-        public GenericRepository(ApplicationContext.ApplicationContext dbContext)
+        public GenericRepository(ApplicationContext.ApplicationContext _db)
         {
-            DbContext = dbContext;
+            db = _db;
         }
 
-        public IQueryable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return DbContext.Set<TEntity>();
+            return await db.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllEntitiesAsync()
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await GetAll().ToListAsync();
+            return await db.Set<TEntity>().Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
-            await DbContext.AddAsync(entity);
-            await DbContext.SaveChangesAsync();
+            await db.Set<TEntity>().AddAsync(entity);
+            await db.SaveChangesAsync();
 
             return entity;
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            DbContext.Update(entity);
-            await DbContext.SaveChangesAsync();
+            db.Set<TEntity>().Update(entity);
+            await db.SaveChangesAsync();
 
             return entity;
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task<bool> DeleteAsync(int id)
         {
-            DbContext.Remove(entity);
-            await DbContext.SaveChangesAsync();
+            var entity = await db.Set<TEntity>().FindAsync(id);
+            db.Set<TEntity>().Remove(entity);
+            await db.SaveChangesAsync();
+
+            return true;
         }
     }
 }
