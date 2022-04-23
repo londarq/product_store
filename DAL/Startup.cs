@@ -1,6 +1,6 @@
 ﻿using DAL.Repository;
 using DAL.Repository.GenericRepository;
-using DAL.Repository.Interfaces;
+using DAL.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -19,7 +19,7 @@ namespace API
         {
             string ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            BLL.Startup.ConfigureServices(services, ConnectionString, Configuration);
+            BLL.Startup.ConfigureServices(services, ConnectionString);
 
             services.AddControllers();
         }

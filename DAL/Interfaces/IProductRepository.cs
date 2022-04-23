@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {

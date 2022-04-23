@@ -1,9 +1,8 @@
 ﻿using DAL.Entities;
-using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IProductInventoryRepository
+    public interface IProductInventoryRepository : IGenericRepository<ProductInventory>
     {
 
     }
