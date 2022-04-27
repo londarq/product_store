@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using DAL.Context;
+using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace DAL.Repository.GenericRepository
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         
-        protected readonly ApplicationContext.ApplicationContext db;
+        protected readonly ApplicationDbContext db;
         
-        public GenericRepository(ApplicationContext.ApplicationContext _db)
+        public GenericRepository(ApplicationDbContext _db)
         {
             db = _db;
         }

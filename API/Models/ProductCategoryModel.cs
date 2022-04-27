@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace DAL.Entities
+namespace API.Models
 {
-    public class ProductCategory : BaseEntity
+    public class ProductCategoryModel : BaseModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public IEnumerable<Product>? Products { get; set; }
+        public IEnumerable<ProductModel>? Products { get; set; }
     }
 }

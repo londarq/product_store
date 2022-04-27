@@ -1,13 +1,13 @@
-﻿namespace DAL.Entities
+﻿namespace API.Models
 {
-    public class Product : BaseEntity
+    public class ProductModel : BaseModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
 
         public int? CategoryId { get; set; }
-        public ProductCategory? Category { get; set; }
-        public ProductInventory? Inventory { get; set; }
+        public ProductCategoryModel? Category { get; set; }
+        public ProductInventoryModel? Inventory { get; set; }
     }
 }

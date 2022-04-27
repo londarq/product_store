@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using DAL.Context;
+using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repository.GenericRepository;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace DAL.Repository
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public ProductRepository(ApplicationContext.ApplicationContext dbContext) : base(dbContext) {}
+        public ProductRepository(ApplicationDbContext dbContext) : base(dbContext) {}
 
         //??????????????? сделать этот репозиторий основным для взаимодействия c бд
         //

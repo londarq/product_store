@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
+using DAL.Context;
 
 namespace DAL
 {
@@ -20,10 +21,10 @@ namespace DAL
 
         public static void ConfigureServices(IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<ApplicationContext.ApplicationContext>(options => options.UseSqlServer(connectionString));
-            services.AddTransient<IDbConnection>(db => new SqlConnection(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            //services.AddTransient<IDbConnection>(db => new SqlConnection(connectionString));
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddScoped<IProductInventoryRepository, ProductInventoryRepository>();

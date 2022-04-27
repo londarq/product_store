@@ -1,19 +1,15 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.ApplicationContext
+namespace DAL.Context
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductInventory> ProductInventories { get; set; }
-
-        public ApplicationContext()
-        {
-            Database.EnsureCreated();
-        }
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         { }
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BLL.Services;
+using BLL.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BLL
@@ -14,9 +16,13 @@ namespace BLL
 
         public static void ConfigureServices(IServiceCollection services, string connectionString)
         {
-            //services.AddScoped<IProductService, ProductService>();
-            //services.AddScoped<IProductTypeService, ProductTypeService>();
+            services.AddAutoMapper(typeof(Startup));
 
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductCategoryService, ProductCategoryService>();
+            services.AddScoped<IProductInventoryService, ProductInventoryService>();
+
+            //object p = new DAL.SampleContextFactory(connectionString);
             DAL.Startup.ConfigureServices(services, connectionString);
         }
     }
