@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace API.Models
+namespace BLL.Models
 {
-    public class ProductCategoryModel : BaseModel
+    public class CategoryModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 

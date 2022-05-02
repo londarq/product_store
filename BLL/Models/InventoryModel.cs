@@ -1,7 +1,8 @@
-﻿namespace API.Models
+﻿namespace BLL.Models
 {
-    public class ProductInventoryModel : BaseModel
+    public class InventoryModel
     {
+        public int Id { get; set; }
         public int Quantity { get; set; }
 
         public int? ProductId { get; set; }

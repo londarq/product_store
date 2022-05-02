@@ -21,7 +21,6 @@ namespace API
 
             BLL.Startup.ConfigureServices(services, ConnectionString);
 
-            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
         }
 

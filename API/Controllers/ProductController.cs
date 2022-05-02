@@ -1,9 +1,6 @@
-﻿using API.Models;
-using AutoMapper;
-using BLL.Domain;
+﻿using BLL.Models;
 using BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -13,12 +10,10 @@ namespace API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService productService;
-        private readonly IMapper mapper;
 
-        public ProductController(IProductService _productService, IMapper _mapper)
+        public ProductController(IProductService _productService)
         {
             productService = _productService;
-            mapper = _mapper;
         }
 
         [HttpGet]
@@ -26,33 +21,32 @@ namespace API.Controllers
         {
             var posts = await productService.GetAllAsync();
 
-            return Ok(mapper.Map<IEnumerable<ProductModel>>(posts));
+            return Ok(posts);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var product = await productService.GetByIdAsync(id);
-            return Ok(mapper.Map<ProductModel>(product));
+
+            return Ok(product);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductModel newProduct)
         {
-            var product = mapper.Map<ProductDTO>(newProduct);
-            var result = await productService.CreateAsync(product);
+            var result = await productService.CreateAsync(newProduct);
             
-            return Ok(mapper.Map<ProductModel>(result));
+            return Ok(result);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] ProductModel productModel)
         {
             productModel.Id = id;
-            var product = mapper.Map<ProductDTO>(productModel);
-            var result = await productService.UpdateAsync(product);
+            var result = await productService.UpdateAsync(productModel);
 
-            return Ok(mapper.Map<ProductModel>(result));
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]

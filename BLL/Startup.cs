@@ -19,8 +19,8 @@ namespace BLL
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IProductCategoryService, ProductCategoryService>();
-            services.AddScoped<IProductInventoryService, ProductInventoryService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IInventoryService, InventoryService>();
 
             //object p = new DAL.SampleContextFactory(connectionString);
             DAL.Startup.ConfigureServices(services, connectionString);

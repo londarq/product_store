@@ -2,7 +2,7 @@
 
 namespace BLL.Services.Interfaces
 {
-    public interface IProductService : IGenericService<ProductModel>
+    public interface IInventoryService : IGenericService<InventoryModel>
     {
 
     }

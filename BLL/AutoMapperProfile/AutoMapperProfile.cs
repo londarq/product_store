@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.Domain;
+using BLL.Models;
 using DAL.Entities;
 
 namespace BLL.AutoMapperProfile
@@ -8,10 +8,9 @@ namespace BLL.AutoMapperProfile
     {
         public AutoMapperProfile()
         {
-            CreateMap<BaseEntity, BaseDTO>().ReverseMap();
-            CreateMap<Product, ProductDTO>().ReverseMap();
-            CreateMap<ProductCategory, ProductCategoryDTO>().ReverseMap();
-            CreateMap<ProductInventory, ProductInventoryDTO>().ReverseMap();
+            CreateMap<Product, ProductModel>().ReverseMap();
+            CreateMap<ProductCategory, CategoryModel>().ReverseMap();
+            CreateMap<ProductInventory, InventoryModel>().ReverseMap();
         }
     }
 }

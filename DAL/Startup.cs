@@ -1,11 +1,8 @@
 ﻿using DAL.Repository;
-using DAL.Repository.GenericRepository;
 using DAL.Interfaces;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Data;
 using DAL.Context;
 
 namespace DAL
@@ -26,8 +23,8 @@ namespace DAL
 
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
-            services.AddScoped<IProductInventoryRepository, ProductInventoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
         }
     }
 }

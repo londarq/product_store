@@ -1,15 +1,14 @@
-﻿using BLL.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BLL.Services.Interfaces
 {
-    public interface IGenericService<Tdto> where Tdto : BaseDTO
+    public interface IGenericService<TModel> where TModel : class
     {
-        Task<IEnumerable<Tdto>> GetAllAsync();
-        Task<Tdto> GetByIdAsync(int id);
-        Task<Tdto> CreateAsync(Tdto dto);
-        Task<Tdto> UpdateAsync(Tdto dto);
+        Task<IEnumerable<TModel>> GetAllAsync();
+        Task<TModel> GetByIdAsync(int id);
+        Task<TModel> CreateAsync(TModel dto);
+        Task<TModel> UpdateAsync(TModel dto);
         Task<bool> DeleteAsync(int id);
     }
 }

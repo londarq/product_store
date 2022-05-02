@@ -2,8 +2,6 @@
 using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repository.GenericRepository;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
